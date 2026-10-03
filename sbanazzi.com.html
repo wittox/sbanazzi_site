@@ -1,0 +1,243 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>sbanazzi.com</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Courier+Prime:wght@400;700&family=Work+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: an old family encyclopedia entry, then a "ask dad" desk where every answer is authoritative and wrong. */
+:root {
+  --paper: #EBEFE2;
+  --field: #F7F8F2;
+  --ink: #1D2847;
+  --muted: #586179;
+  --rule: #C3CAB4;
+  --accent: #C21F48;
+  --ok: #2C7A4C;
+  --display: "Rozha One", "Bodoni 72", Didot, Georgia, serif;
+  --body: "Work Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "Courier Prime", "Courier New", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #131923; --field: #1A2230; --ink: #E4E8F1; --muted: #98A1B4;
+    --rule: #2B3545; --accent: #FF5B7B; --ok: #5DC58C; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #131923; --field: #1A2230; --ink: #E4E8F1; --muted: #98A1B4;
+  --rule: #2B3545; --accent: #FF5B7B; --ok: #5DC58C; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font: 400 1rem/1.6 var(--body); padding: 0 16px; }
+.wrap { max-width: 760px; margin: 0 auto; padding-block: 40px 64px; display: grid; gap: 56px; }
+
+.masthead { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px;
+  font: 700 .72rem/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
+  border-bottom: 1px solid var(--rule); padding-bottom: 12px; }
+
+.entry h1 { font: 400 clamp(3.4rem, 13vw, 6.5rem)/.95 var(--display); margin: 0; letter-spacing: -.01em; }
+.entry .pron { font: 400 1.05rem/1.4 var(--mono); color: var(--muted); margin: 10px 0 18px; }
+.entry .pron b { color: var(--accent); font-weight: 700; }
+.entry p { margin: 0; max-width: 62ch; font-size: 1.12rem; }
+.entry ol { margin: 14px 0 0; padding-left: 1.4em; max-width: 62ch; display: grid; gap: 8px; }
+.entry .ex { font-style: italic; color: var(--muted); }
+.entry .ex q { font-style: normal; color: var(--ink); }
+.entry .etym { margin-top: 16px; font: 400 .92rem/1.5 var(--mono); color: var(--muted); max-width: 62ch; }
+
+/* ask desk */
+.desk { border: 1.5px solid var(--ink); background: var(--field); }
+.desk-head { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  border-bottom: 1.5px solid var(--ink); padding: 12px 18px;
+  font: 700 .78rem/1.2 var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+.desk-body { padding: 20px 18px 22px; display: grid; gap: 16px; }
+.desk h2 { font: 400 1.9rem/1.1 var(--display); margin: 0; }
+label.lbl { font: 700 .74rem/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 8px; }
+.ask-row { display: flex; gap: 10px; flex-wrap: wrap; }
+input[type=text] {
+  flex: 1 1 260px; min-width: 0; padding: 12px 14px;
+  font: 400 1.1rem/1.4 var(--mono); color: var(--ink); background: var(--paper);
+  border: 1px solid var(--rule); border-bottom: 2px solid var(--ink); border-radius: 0;
+}
+input:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.examples { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.examples span { font: 400 .8rem/1 var(--mono); color: var(--muted); }
+.chip-btn { font: 500 .85rem/1 var(--body); padding: 8px 12px; border: 1px solid var(--rule); background: transparent;
+  color: var(--ink); cursor: pointer; border-radius: 999px; }
+.chip-btn:hover { border-color: var(--ink); }
+.actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+.btn { font: 700 .95rem/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; padding: 14px 20px;
+  border: 1.5px solid var(--ink); background: var(--ink); color: var(--paper); cursor: pointer; }
+.btn.ghost { background: transparent; color: var(--ink); }
+.btn:active { transform: translateY(1px); }
+.btn[hidden] { display: none; }
+
+.chat { display: grid; gap: 10px; border-top: 1.5px dashed var(--rule); padding-top: 18px; }
+.bubble { max-width: 85%; padding: 10px 14px; min-width: 0; overflow-wrap: anywhere; }
+.bubble .who { display: block; font: 700 .68rem/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.q { justify-self: end; background: var(--paper); border: 1px solid var(--rule); font: 400 1rem/1.45 var(--mono); }
+.a { justify-self: start; border-left: 4px solid var(--accent); padding-left: 16px; font: 400 1.6rem/1.2 var(--display); }
+.a.pop { animation: pop .35s cubic-bezier(.3,1.5,.5,1); }
+@keyframes pop { from { transform: translateY(6px); opacity: 0; } to { transform: none; opacity: 1; } }
+
+.meters { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px 24px; }
+.meter { display: grid; gap: 6px; }
+.meter .row { display: flex; justify-content: space-between; font: 400 .8rem/1 var(--mono); color: var(--muted); }
+.meter .row b { color: var(--ink); font-variant-numeric: tabular-nums; }
+.bar { height: 8px; background: var(--rule); }
+.bar i { display: block; height: 100%; }
+.toast { font: 400 .85rem/1 var(--mono); color: var(--ok); }
+
+/* faq */
+.section h2 { font: 400 2rem/1.1 var(--display); margin: 0 0 6px; }
+.section > p { margin: 0 0 20px; color: var(--muted); max-width: 62ch; }
+.faq { border-top: 1.5px solid var(--ink); margin: 0; }
+.faq div { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 4px 24px; padding: 14px 0; border-bottom: 1px solid var(--rule); }
+@media (max-width: 560px) { .faq div { grid-template-columns: 1fr; } }
+.faq dt { font: 400 .98rem/1.45 var(--mono); color: var(--muted); }
+.faq dd { margin: 0; font: 600 1.05rem/1.4 var(--body); }
+
+footer { font: 400 .78rem/1.6 var(--mono); color: var(--muted); border-top: 1px solid var(--rule); padding-top: 14px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+
+@media (prefers-reduced-motion: reduce) { .a.pop { animation: none; } }
+</style>
+
+<div class="wrap">
+  <div class="masthead">
+    <span>Enciclopedia di Papà</span>
+    <span>sbanazzi.com · vol. unico</span>
+  </div>
+
+  <section class="entry" aria-labelledby="t">
+    <h1 id="t">sbanazzi</h1>
+    <div class="pron">/zba·ˈnat·tsi/ · <b>s.m. invariabile</b> · uso domestico</div>
+    <p>Risposta universale a qualsiasi domanda di cui non si conosce la risposta. Va pronunciata con calma e sicurezza assoluta, senza staccare gli occhi dal telefono.</p>
+    <ol>
+      <li>Oggetto, concetto o fenomeno non meglio identificato. <span class="ex">«Papà, cos'è lo spread?» <q>Uno sbanazzi.</q></span></li>
+      <li>Fine della conversazione. <span class="ex">«Sì ma cos'è uno sbanazzi?» <q>È uno sbanazzi. Chiedi a tua madre.</q></span></li>
+    </ol>
+    <div class="etym">Etim.: coniato da papà, data incerta. Primo uso attestato in risposta a una domanda della figlia, contenuto della domanda non pervenuto.</div>
+  </section>
+
+  <section class="desk" aria-labelledby="f">
+    <div class="desk-head"><span>Chiedi a papà</span><span>Risposta garantita</span></div>
+    <div class="desk-body">
+      <h2 id="f">Fai una domanda</h2>
+      <div>
+        <label class="lbl" for="q">La tua domanda</label>
+        <div class="ask-row">
+          <input type="text" id="q" autocomplete="off" value="Papà, come funziona il Wi-Fi?">
+          <button class="btn" type="button" id="go">Chiedi</button>
+        </div>
+      </div>
+      <div class="examples">
+        <span>Domande tipiche:</span>
+        <button class="chip-btn" type="button">Perché il cielo è blu?</button>
+        <button class="chip-btn" type="button">Quanto pesa la Luna?</button>
+        <button class="chip-btn" type="button">Chi era Garibaldi?</button>
+        <button class="chip-btn" type="button">Dove sono le chiavi della macchina?</button>
+      </div>
+
+      <div class="chat" id="chat" aria-live="polite"></div>
+
+      <div class="meters">
+        <div class="meter"><div class="row"><span>Sicurezza</span><b id="m1">—</b></div><div class="bar"><i id="b1" style="background: var(--ok); width: 0"></i></div></div>
+        <div class="meter"><div class="row"><span>Correttezza</span><b id="m2">—</b></div><div class="bar"><i id="b2" style="background: var(--accent); width: 0"></i></div></div>
+      </div>
+
+      <div class="actions">
+        <button class="btn ghost" type="button" id="follow" hidden>Sì ma cos'è uno sbanazzi?</button>
+        <button class="btn ghost" type="button" id="copy">Copia risposta</button>
+        <span class="toast" id="toast" role="status" aria-live="polite"></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="c">
+    <h2 id="c">Domande frequenti</h2>
+    <p>Raccolta delle domande fatte in famiglia negli anni, con le risposte ufficiali.</p>
+    <dl class="faq">
+      <div><dt>Papà, cos'è l'inflazione?</dt><dd>Uno sbanazzi.</dd></div>
+      <div><dt>Come fa l'aereo a stare in aria?</dt><dd>Ha degli sbanazzi sotto le ali.</dd></div>
+      <div><dt>Perché il mare è salato?</dt><dd>Per via degli sbanazzi.</dd></div>
+      <div><dt>Chi ha inventato la pizza?</dt><dd>Uno che faceva sbanazzi a Napoli.</dd></div>
+      <div><dt>Quanto manca all'arrivo?</dt><dd>Due sbanazzi, più o meno.</dd></div>
+      <div><dt>Cos'è uno sbanazzi?</dt><dd>Non fare domande stupide.</dd></div>
+    </dl>
+  </section>
+
+  <footer>
+    <span>© sbanazzi.com · Enciclopedia di Papà</span>
+    <span>Tutte le risposte sono definitive.</span>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var RULES = [
+    [/cos.? ?[eè] (uno )?sbanazzi|che cos.? ?[eè] (uno )?sbanazzi/, ["Non fare domande stupide.", "È uno sbanazzi. Chiedi a tua madre.", "Uno sbanazzi è uno sbanazzi."]],
+    [/come (funziona|fa|fanno|si fa)/, ["Ci sono degli sbanazzi dentro.", "Con gli sbanazzi, ovvio.", "Prendi uno sbanazzi e lo giri."]],
+    [/perch[eé]/, ["Per via degli sbanazzi.", "Per gli sbanazzi.", "Colpa degli sbanazzi."]],
+    [/quanto|quanti|quante/, ["Tre sbanazzi, più o meno.", "Parecchi sbanazzi.", "Due sbanazzi e mezzo."]],
+    [/dove/, ["Dietro lo sbanazzi.", "Vicino allo sbanazzi. Guarda meglio.", "Dove l'hai lasciato, sotto lo sbanazzi."]],
+    [/quando/, ["Dopo lo sbanazzi.", "Fra uno sbanazzi.", "Ai tempi degli sbanazzi."]],
+    [/chi /, ["Uno che faceva gli sbanazzi.", "Un famoso sbanazzi.", "Quello degli sbanazzi."]],
+    [/cos.? ?[eè]|che cos|cosa sono|cos'è/, ["Uno sbanazzi.", "È uno sbanazzi.", "Uno sbanazzi, no?"]]
+  ];
+  var DEFAULT = ["Uno sbanazzi.", "È uno sbanazzi.", "Sbanazzi."];
+  var FOLLOW = ["È uno sbanazzi. Chiedi a tua madre.", "Non fare domande stupide.", "Uno sbanazzi è uno sbanazzi."];
+
+  var $ = function (id) { return document.getElementById(id); };
+  var lastAnswer = "";
+
+  function pick(list) { return list[Math.floor(Math.random() * list.length)]; }
+
+  function answer(q) {
+    var t = " " + q.toLowerCase().replace(/’/g, "'") + " ";
+    for (var i = 0; i < RULES.length; i++) if (RULES[i][0].test(t)) return pick(RULES[i][1]);
+    return pick(DEFAULT);
+  }
+
+  function bubble(cls, who, text) {
+    var d = document.createElement("div"); d.className = "bubble " + cls;
+    var w = document.createElement("span"); w.className = "who"; w.textContent = who;
+    d.appendChild(w); d.appendChild(document.createTextNode(text));
+    $("chat").appendChild(d);
+    return d;
+  }
+
+  function meters() {
+    var s = 97 + Math.floor(Math.random() * 3);
+    $("m1").textContent = s + "%"; $("b1").style.width = s + "%";
+    $("m2").textContent = "0%"; $("b2").style.width = "0%";
+  }
+
+  function ask(q, isFollow) {
+    q = q.trim(); if (!q) return;
+    if (!isFollow) $("chat").innerHTML = "";
+    bubble("q", isFollow ? "Tu, insistendo" : "Tu", q);
+    lastAnswer = isFollow ? pick(FOLLOW) : answer(q);
+    var a = bubble("a", "Papà", lastAnswer);
+    a.classList.add("pop");
+    meters();
+    $("follow").hidden = !!isFollow || /sbanazzi\?/i.test(q);
+  }
+
+  $("go").addEventListener("click", function () { ask($("q").value); });
+  $("q").addEventListener("keydown", function (e) { if (e.key === "Enter") ask($("q").value); });
+  document.querySelectorAll(".examples .chip-btn").forEach(function (b) {
+    b.addEventListener("click", function () { $("q").value = b.textContent; ask(b.textContent); });
+  });
+  $("follow").addEventListener("click", function () { ask("Sì ma cos'è uno sbanazzi?", true); });
+  $("copy").addEventListener("click", function () {
+    var text = lastAnswer || "Uno sbanazzi.";
+    var show = function (m) { $("toast").textContent = m; setTimeout(function () { $("toast").textContent = ""; }, 1800); };
+    try { navigator.clipboard.writeText(text).then(function () { show("Copiato"); }, function () { show(text); }); }
+    catch (e) { show(text); }
+  });
+
+  ask($("q").value);
+})();
+</script>
+
+</body></html>
